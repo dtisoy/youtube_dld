@@ -1,7 +1,7 @@
 from youtube_api import YouTubeDataAPI
 from pytube import YouTube
  
-key = 'AIzaSyAWJ-XQ2zKMccIjCxgjfV-KvtzAz8lfi3Y'
+key = 'AIzaSyBW8yozCpWXOIOPD-HQ8qla7cQCr9Gh_N4'
 yt = YouTubeDataAPI(key)
 y_id = input('id: ')
 videos = yt.get_videos_from_playlist_id(y_id)
