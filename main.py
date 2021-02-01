@@ -16,10 +16,12 @@ def run():
     videos = yt.get_videos_from_playlist_id(y_id)
     playlist = list()
     path = '/home/ltisoy/Music/music'
+
     # obtener las url de los videos de la playlist
     for i in videos:
         id_video = i['video_id']
         playlist.append(f"https://www.youtube.com/watch?v={id_video}")
+
     # descargar el audio
     for video in playlist:
         video_info = YouTube(video)
@@ -29,6 +31,8 @@ def run():
 
 
 if __name__ == '__main__':
+    
     run()
+
     r_music = Rename_music()
     r_music.rename_music()
