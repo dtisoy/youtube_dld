@@ -1,24 +1,34 @@
 from youtube_api import YouTubeDataAPI
 from pytube import YouTube
- 
-key = 'AIzaSyBW8yozCpWXOIOPD-HQ8qla7cQCr9Gh_N4'
-yt = YouTubeDataAPI(key)
-y_id = input('id: ')
-videos = yt.get_videos_from_playlist_id(y_id)
-playlist = list()
+import os
+from dotenv import load_dotenv
+from cambio import Rename_music
 
 
-for i in videos:
-    id_video = i['video_id']
-    playlist.append(f"https://www.youtube.com/watch?v={id_video}")
+load_dotenv()
+key = os.getenv('API_KEY')
 
-for video in playlist:
-    yt = YouTube(video)
-    print(yt.title)
 
-# def _video_url(watch_path: str):
-#         return f"https://www.youtube.com{watch_path}"
-# self.playlist_url = (
-#             f"https://www.youtube.com/playlist?list={self.playlist_id}
+def run():
 
-# trim_index = videos_urls.index(f"/watch?v={until_watch_id}"
+    yt = YouTubeDataAPI(key)
+    y_id = 'PL3dgJQMuT7qm9L0BqreqIG9uzYi0pihJg'
+    videos = yt.get_videos_from_playlist_id(y_id)
+    playlist = list()
+    path = '/home/ltisoy/Music/music'
+    # obtener las url de los videos de la playlist
+    for i in videos:
+        id_video = i['video_id']
+        playlist.append(f"https://www.youtube.com/watch?v={id_video}")
+    # descargar el audio
+    for video in playlist:
+        video_info = YouTube(video)
+        video_info.streams.filter(
+            only_audio=True).first().download(output_path=path)
+        print(f'{video_info.title} descargado')
+
+
+if __name__ == '__main__':
+    run()
+    r_music = Rename_music()
+    r_music.rename_music()
