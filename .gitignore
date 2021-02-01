@@ -1,2 +1,4 @@
 venv/
 clave
+.env
+__pycache__/
