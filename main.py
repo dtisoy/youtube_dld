@@ -24,14 +24,17 @@ def run():
 
     # descargar el audio
     for video in playlist:
-        video_info = YouTube(video)
-        video_info.streams.filter(
-            only_audio=True).first().download(output_path=path)
-        print(f'{video_info.title} descargado')
+        try:
+            video_info = YouTube(video)
+            video_info.streams.filter(
+                only_audio=True).first().download(output_path=path)
+            print(f'{video_info.title} descargado')
+        except:
+            print('No se pudo descargar')
 
 
 if __name__ == '__main__':
-    
+
     run()
 
     r_music = Rename_music()
