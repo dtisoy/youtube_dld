@@ -12,7 +12,7 @@ key = os.getenv('API_KEY')
 def run():
 
     yt = YouTubeDataAPI(key)
-    y_id = 'PL3dgJQMuT7qm9L0BqreqIG9uzYi0pihJg'
+    y_id = input('Insertar Id: ')
     videos = yt.get_videos_from_playlist_id(y_id)
     playlist = list()
     path = '/home/ltisoy/Music/music'
