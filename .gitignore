@@ -2,3 +2,4 @@ venv/
 clave
 .env
 __pycache__/
+musica.log
